@@ -57,6 +57,40 @@ var users=[
     users.push(user);
     res.send("hehehe")
  })
+//update the data in the data base using the put in crud
+
+app.put("/api/users/:id",(req,res)=>{
+
+    const id= parseInt(req.params.id);
+    const user=users.find((user)=>user.id===id);
+
+    if(!user){
+        res.status(404).json({message:"invalid user id"})
+    }
+    const keys=Object.keys(req.body);
+    keys.forEach((key)=>{
+        if(!user[key]){
+            res.status(400).send({message:"inavlid details passsed on the database"})
+        }
+        user[key]=req.body[keys];
+        res.send(user)
+    })
+
+})
+//delete the user data by using id in the server by using the delte operation in crud
+
+app.delete("/api/users/:id",(req,res)=>{
+
+    const id=parseInt(req.params.id);
+    const user=users.find((user)=>user.id===id);
+
+    if(!user){
+        res.status(404).json({message:"invalid id"})
+    }
+    users=users.filter((user)=>user.id!==id);
+    res.send(user);
+})
+
 
 app.listen(8000,()=>{
     console.log("your server is running on port 8000")
