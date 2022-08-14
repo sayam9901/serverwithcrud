@@ -18,6 +18,9 @@ db.once("open",()=>{
     console.log("connection sucessfull")
 })
 
+
+//-------------------------------------COPY FROM HERE------------------------------------------------------------
+
 var blogschema=mongoose.Schema({
     id:Number,
     title:  String,
@@ -125,7 +128,7 @@ var blogschema=mongoose.Schema({
   })
 
 
-
+//---------------------------------------------------TO HERE----------------------------------------------------------------
 
 
 
